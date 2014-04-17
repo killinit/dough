@@ -63,13 +63,6 @@
   }
 }
 
-%prevent-text-zooming {
-  // non-standard property to prevent automatic text zooming when changing orientation or viewing mobile
-  -webkit-text-size-adjust: 100%;
-  -moz-text-size-adjust: 100%;
-  -ms-text-size-adjust: 100%;
-}
-
 %font-smoothing {
   // doesn't work as well with italics as with regular text
   -webkit-font-smoothing: antialiased;

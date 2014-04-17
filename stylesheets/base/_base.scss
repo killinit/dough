@@ -11,8 +11,10 @@ div[tabindex="-1"] {
 body {
   @extend %type;
   @extend %font-smoothing;
-  @extend %prevent-text-zooming;
   color: $color-text-default;
+  -webkit-text-size-adjust: 100%;
+  -moz-text-size-adjust: 100%;
+  -ms-text-size-adjust: 100%;
 }
 
 // Currently we only have styles for H1 - H4
