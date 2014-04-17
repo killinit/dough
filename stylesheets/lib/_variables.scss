@@ -1,3 +1,8 @@
+$default-font-size: 16px;
+
+// VERTICAL RHYTHEM
+$baseline-unit: 6px;
+
 // BUTTONS
 $border-radius-button: 4px;
 $border-width-button: 3px;
@@ -5,9 +10,6 @@ $lighten-button: 10%;
 $padding-vertical-button: 12px;
 $padding-horizontal-button: 22px;
 $padding-button-small-square: 8px;
-
-// VERTICAL RHYTHEM
-$baseline-unit: if($responsive, 0.375rem, 6px);
 
 // COLOURS
 $color-white: #fff !default;
