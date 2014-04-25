@@ -183,6 +183,15 @@
   @include body(18, 24);
 }
 
+%type-message {
+  @include body(16, 18);
+  @extend %font-body;
+
+  @include respond-to($mq-m) {
+    @include body(16, 22);
+  }
+}
+
 %paragraph {
   @include paragraph(16, 22);
 
