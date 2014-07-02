@@ -35,8 +35,8 @@ define(['jquery', 'rsvp'], function($, RSVP) {
           self = this;
 
       // if no DOM fragment supplied, use the document
-      this.$container = $container || $('body');
-      $components = this.$container.find('[data-dough-component]').not('[data-initialised="yes"]');
+      $container = $container || $('body');
+      $components = $container.find('[data-dough-component]').not('[data-initialised="yes"]');
       instantiatedList = this._createPromises($components);
       initialisedList = this._createPromises($components);
       if ($components.length) {
