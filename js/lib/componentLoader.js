@@ -8,7 +8,7 @@
  * have a chance to set up listeners to any other components they need. Once they are all created,
  * they are initialised (the 'init' method of each is called) in a second pass.
  */
-define(['jquery', 'rsvp'], function($, RSVP) {
+define(['jquery', 'rsvp', 'eventsWithPromises'], function($, RSVP, eventsWithPromises) {
 
   'use strict';
 
@@ -29,6 +29,18 @@ define(['jquery', 'rsvp'], function($, RSVP) {
      * initialise successfully
      */
     init: function($container) {
+      var self = this;
+      this.reset();
+      eventsWithPromises.subscribe('domChanged', function(data, promise) {
+        self._scan((data && data.$el) || null)
+            .then(function() {
+              promise.resolve();
+            });
+      }, this);
+      return this._scan($container);
+    },
+
+    _scan: function($container) {
       var $components,
           instantiatedList,
           initialisedList,
@@ -55,6 +67,7 @@ define(['jquery', 'rsvp'], function($, RSVP) {
      */
     reset: function() {
       this.components = {};
+      eventsWithPromises.unsubscribe('domChanged', this);
       return this;
     },
 

@@ -135,6 +135,20 @@ describe('componentLoader', function() {
       });
     });
 
+    it('should initialise when new DOM fragments are added to the page', function(done){
+      var self = this,
+          spy;
+
+      this.$html = $(window.__html__['test/fixtures/componentLoader.html']);
+      requirejs(['eventsWithPromises'], function(eventsWithPromises) {
+        spy = sinon.spy(self.componentLoader, '_scan');
+        eventsWithPromises.publish('domChanged');
+        expect(spy.callCount).to.equal(1);
+        self.componentLoader._scan.restore();
+        done();
+      });
+    });
+
   });
 
 });
