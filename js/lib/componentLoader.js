@@ -67,11 +67,11 @@ define(['jquery', 'rsvp'], function($, RSVP) {
      */
     _createPromises: function($components) {
       var obj = {
-        deferreds: [],
-        promises: []
-      },
-      i,
-      j;
+            deferreds: [],
+            promises: []
+          },
+          i,
+          j;
 
       for (i = 0, j = $components.length; i < j; i++) {
         obj.deferreds.push(RSVP.defer());
