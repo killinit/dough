@@ -43,22 +43,6 @@ describe('componentLoader', function() {
 
   });
 
-  describe('no DOM fragment supplied', function() {
-
-    beforeEach(function(done) {
-      this.$html = '';
-      this.componentLoader.init(this.$html)
-          .then(function() {
-            done();
-          });
-    });
-
-    it('should scan the whole document if not passed a DOM fragment', function() {
-      expect(this.componentLoader.$container.selector).to.equal('body');
-    });
-
-  });
-
   describe('init receives summary of success / failure of init of components', function() {
 
     beforeEach(function(done) {
@@ -139,7 +123,7 @@ describe('componentLoader', function() {
           spy;
 
       this.$html.append($(window.__html__['test/fixtures/componentLoader.html']));
-      requirejs(['RangeInput', 'TabSelector'], function(RangeInput, TabSelector) {
+      requirejs(['RangeInput'], function(RangeInput) {
         spy = sinon.spy(RangeInput.prototype, 'init');
         self.componentLoader.init(self.$html)
             .then(function() {
