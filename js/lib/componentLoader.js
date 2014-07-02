@@ -1,15 +1,9 @@
 /**
  * UI component loader. Scans the supplied DOM for 'data-dough-component' attributes and initialises
  * components based on those attribute values
- * eg. the following markup will cause 2 components to be initialised, DropdownList and MultiToggler
  *
- <div class="container">
-   <div data-dough-component="DropdownList">
-   </div>
-   <div data-dough-component="MultiToggler">
-   </div>
- </div>
-
+ * See test fixture for sample HTML - test/fixtures/componentLoader.html
+ *
  * Components are created in 2 separate passes. The reason for this is so that all components can
  * have a chance to set up listeners to any other components they need. Once they are all created,
  * they are initialised (the 'init' method of each is called) in a second pass.
@@ -40,10 +34,9 @@ define(['jquery', 'rsvp'], function($, RSVP) {
           initialisedList,
           self = this;
 
-      this.components = {};
       // if no DOM fragment supplied, use the document
       this.$container = $container || $('body');
-      $components = this.$container.find('[data-dough-component]');
+      $components = this.$container.find('[data-dough-component]').not('[data-initialised="yes"]');
       instantiatedList = this._createPromises($components);
       initialisedList = this._createPromises($components);
       if ($components.length) {
@@ -54,6 +47,15 @@ define(['jquery', 'rsvp'], function($, RSVP) {
         });
       }
       return RSVP.allSettled(initialisedList.promises);
+    },
+
+    /**
+     * Clear the list of components
+     * @returns {jquery}
+     */
+    reset: function() {
+      this.components = {};
+      return this;
     },
 
     /**
@@ -131,12 +133,14 @@ define(['jquery', 'rsvp'], function($, RSVP) {
 
       $.each(components, function(componentName, list) {
         $.each(list, function(idx, instance) {
-          try {
-            instance.init && instance.init(initialisedList[i]);
-          } catch (err) {
-            initialisedList[i].reject(err);
+          if (instance.$el.attr('data-initialised') !== 'yes') {
+            try {
+              instance.init && instance.init(initialisedList[i]);
+            } catch (err) {
+              initialisedList[i].reject(err);
+            }
+            i++;
           }
-          i++;
         });
       });
     },
