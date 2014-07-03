@@ -2,7 +2,7 @@
  * Bind form inputs to a simple data model held in memory (an object literal / hash of keys and values).
  * When the form submits, serialize the model and send to the server, then update it with the response.
  */
-define(['jquery', 'DoughBaseComponent', 'dataBinding'], function($, DoughBaseComponent, dataBinding) {
+define(['jquery', 'DoughBaseComponent', 'dataBinding', 'eventsWithPromises'], function($, DoughBaseComponent, dataBinding, eventsWithPromises) {
 
   'use strict';
 
@@ -20,9 +20,12 @@ define(['jquery', 'DoughBaseComponent', 'dataBinding'], function($, DoughBaseCom
    * @param {Promise} initialised
    */
   FormModel.prototype.init = function(initialised) {
+    var self = this;
     this.model = {};
     this._setupDataBinding();
-    this._bindEvents();
+    eventsWithPromises.subscribe('formModelChanged', function(data) {
+      $.extend(self.model, data.model);
+    });
     this._initialisedSuccess(initialised);
   };
 
@@ -54,6 +57,10 @@ define(['jquery', 'DoughBaseComponent', 'dataBinding'], function($, DoughBaseCom
         .done(function(data) {
           $.extend(self.model, data);
           self._setupDataBinding();
+          eventsWithPromises.publish('formModelChanged', {
+            emitter: self,
+            model: self.model
+          });
         });
     e && e.preventDefault();
   };
