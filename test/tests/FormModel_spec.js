@@ -17,17 +17,15 @@ describe('Form model', function() {
   });
 
   it('populates its model using values from the DOM', function() {
-    assert.deepEqual(this.formModel.model, {
-      property1: 'value 1',
-      property2: 'value 2'
-    });
+    expect(this.formModel.model.property1).to.eq('value 1');
+    expect(this.formModel.model.property2).to.eq('value 2');
   });
 
   it('sends the model to the server when the form is submitted', function() {
     var query;
     this.$form.submit();
     query = this.server.requests[0].url.split('?')[1];
-    expect(query).to.eq($.param(this.formModel.model));
+    expect(query).to.eq('property1=value+1&property2=value+2');
   });
 
   it('updates the model after the form is submitted', function() {

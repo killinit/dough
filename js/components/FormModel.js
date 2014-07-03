@@ -20,49 +20,45 @@ define(['jquery', 'DoughBaseComponent', 'dataBinding'], function($, DoughBaseCom
    * @param {Promise} initialised
    */
   FormModel.prototype.init = function(initialised) {
-
     this.model = {};
-    this.view = dataBinding.bind(this.$el, this.model);
-    // this will initially populate the model from values in the DOM
-    this.view.publish();
-
-    this._bindFormSubmit();
+    this._setupDataBinding();
+    this._bindEvents();
     this._initialisedSuccess(initialised);
   };
 
-  /**
-   * Hijack the form submit and send the model to the server
-   * @private
-   */
-  FormModel.prototype._bindFormSubmit = function() {
+  FormModel.prototype._setupDataBinding = function() {
     var self = this;
-    this.$el.on('submit', function(e) {
-      $.ajax({
-        url: self.$el.attr('action'),
-        dataType: 'json',
-        data: $.param(self._getModelProperties())
-      })
-          .done(function(data) {
-            $.extend(self.model, data);
-          });
-      e.preventDefault();
+
+    this.view && this.view.unbind();
+    this.view = dataBinding.bind(this.$el, this.model);
+    // this will initially populate the model from values in the DOM
+    this.view.publish();
+    this.$el.find('[data-dough-event-submit]').each(function() {
+      var evt = $(this).attr('data-dough-event-submit');
+      $(this).on(evt, $.proxy(self._sendModelToServer, self));
     });
   };
 
   /**
-   * Make a copy of the model, with any methods stripped out
-   * @returns {Object}
+   * Hijack the form submit
    * @private
    */
-  FormModel.prototype._getModelProperties = function() {
-    var model = $.extend({}, this.model);
+  FormModel.prototype._bindEvents = function() {
+    this.$el.on('submit', $.proxy(this._sendModelToServer, this));
+  };
 
-    $.each(this.model, function(key, val) {
-      if (typeof val === 'function') {
-        delete model[key];
-      }
-    });
-    return model;
+  FormModel.prototype._sendModelToServer = function(e) {
+    var self = this;
+    $.ajax({
+      url: self.$el.attr('action'),
+      dataType: 'json',
+      data: self.$el.serialize()
+    })
+        .done(function(data) {
+          $.extend(self.model, data);
+          self._setupDataBinding();
+        });
+    e && e.preventDefault();
   };
 
   return FormModel;
