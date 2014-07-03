@@ -37,6 +37,7 @@ define(['jquery', 'DoughBaseComponent', 'dataBinding', 'eventsWithPromises'], fu
     this.view = dataBinding.bind(this.$el, this.model);
     // this will initially populate the model from values in the DOM
     this.view.publish();
+    this._bindEvents();
   };
 
   /**
@@ -44,7 +45,12 @@ define(['jquery', 'DoughBaseComponent', 'dataBinding', 'eventsWithPromises'], fu
    * @private
    */
   FormModel.prototype._bindEvents = function() {
-    this.$el.on('submit', $.proxy(this._sendModelToServer, this));
+    var self = this;
+
+    this.$el.find('[data-dough-event-submit]').addBack().each(function() {
+      var evt = $(this).attr('data-dough-event-submit');
+      $(this).on(evt, $.proxy(self._sendModelToServer, self));
+    });
   };
 
   FormModel.prototype._sendModelToServer = function(e) {
