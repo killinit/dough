@@ -31,7 +31,7 @@ define(['jquery', 'DoughBaseComponent', 'dataBinding', 'eventsWithPromises'], fu
 
   FormModel.prototype._setupDataBinding = function() {
     this.view && this.view.unbind();
-    this.$el.find('input').each(function() {
+    this.$el.find('input').not('[data-dough-bind-value]').each(function() {
       $(this).attr('data-dough-bind-value', $(this).attr('name'));
     });
     this.view = dataBinding.bind(this.$el, this.model);
