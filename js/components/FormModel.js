@@ -27,16 +27,13 @@ define(['jquery', 'DoughBaseComponent', 'dataBinding'], function($, DoughBaseCom
   };
 
   FormModel.prototype._setupDataBinding = function() {
-    var self = this;
-
     this.view && this.view.unbind();
+    this.$el.find('input').each(function() {
+      $(this).attr('data-dough-bind-value', $(this).attr('name'));
+    });
     this.view = dataBinding.bind(this.$el, this.model);
     // this will initially populate the model from values in the DOM
     this.view.publish();
-    this.$el.find('[data-dough-event-submit]').each(function() {
-      var evt = $(this).attr('data-dough-event-submit');
-      $(this).on(evt, $.proxy(self._sendModelToServer, self));
-    });
   };
 
   /**
