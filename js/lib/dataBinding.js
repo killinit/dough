@@ -62,11 +62,14 @@ define(['rivets', 'utilities'], function (rivets, utilities) {
     }
   };
 
-  rivets.formatters.currency = function (value) {
-      return utilities.numberToCurrency(value);
-    };
+  rivets.formatters.currencyLabel = function (value) {
+    return utilities.numberToCurrency(value);
+  };
 
-  rivets.formatters.currencyIn = {
+  rivets.formatters.currency = {
+    read: function(value) {
+      return value.toFixed(0);
+    },
     publish: function (value) {
       return parseInt(value, 10);
     }
