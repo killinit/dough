@@ -8,6 +8,7 @@ define(['jquery', 'DoughBaseComponent', 'dataBinding', 'eventsWithPromises'], fu
 
   var FormModel = function() {
     FormModel.baseConstructor.apply(this, arguments);
+    this.model = {};
   };
 
   /**
@@ -21,7 +22,6 @@ define(['jquery', 'DoughBaseComponent', 'dataBinding', 'eventsWithPromises'], fu
    */
   FormModel.prototype.init = function(initialised) {
     var self = this;
-    this.model = {};
     this._setupDataBinding();
     eventsWithPromises.subscribe('formModelChanged', function(data) {
       $.extend(self.model, data.model);
