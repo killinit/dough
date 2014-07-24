@@ -1,0 +1,128 @@
+.l-header {
+  position: relative;
+  background: $color-green-primary;
+  min-height: $baseline-unit*11;
+
+  .mobile-nav {
+    display: none;
+  }
+
+  .mas-logo {
+    @include column(7);
+    margin-top: $baseline-unit*3;
+    margin-bottom: $baseline-unit*3;
+
+    @include respond-to($mq-m) {
+      @include column(4);
+      margin-top: $baseline-unit*2;
+      margin-bottom: 0;
+    }
+  }
+
+  .authentication {
+    @include column(4);
+    display: none;
+
+    @include respond-to($mq-m) {
+      display: block;
+    }
+  }
+
+  .authentication__link {
+    @extend %font-heading-medium;
+    color: $color-white;
+
+    &:visited {
+      color: $color-white;
+    }
+  }
+
+  .l-authentication {
+    @include respond-to($mq-m) {
+      @include column(8);
+    }
+  }
+
+  .search {
+    width: 100%;
+    margin: 0;
+    @include respond-to($mq-m) {
+      padding-right: 46px;
+    }
+  }
+
+  .l-search {
+    background-color: $color-grey-pale;
+    padding: $baseline-unit*3 $baseline-unit;
+    border-bottom: 1px solid $color-white;
+    clear: both;
+
+    @include respond-to($mq-m) {
+      @include column(4);
+      border: 0;
+      background-color: transparent;
+      padding: 0;
+      clear: none;
+      margin-top: $baseline-unit*2;
+      margin-bottom: $baseline-unit*2;
+
+      .search__input {
+        border: 0;
+        border-radius: $baseline-unit/2;
+      }
+    }
+  }
+
+  .mobile-nav {
+    display: block;
+    position: absolute;
+    top: 3px;
+    right: 0;
+
+    @include respond-to($mq-m) {
+      display: none;
+    }
+  }
+
+  .no-js & .mobile-nav__item--search {
+    display: none;
+  }
+
+  .js & .nav {
+    display: none;
+
+    &.is-on {
+      display: block;
+    }
+  }
+
+  .js & .l-search {
+    display: none;
+
+    &.is-on {
+      display: block;
+    }
+
+    @include respond-to($mq-m) {
+      display: block;
+    }
+  }
+}
+
+.l-menu-nav {
+  @extend %clearfix;
+  background: $color-white;
+  clear: both;
+
+  @include respond-to($mq-m) {
+    display: none;
+  }
+
+  .link-list-primary {
+    @include column(12);
+  }
+
+  .link-list-primary__item:last-child {
+    border-bottom: 0;
+  }
+}

@@ -1,4 +1,12 @@
-@import 'frontend-assets/stylesheets/lib';
-@import 'frontend-assets/stylesheets/common';
-@import 'frontend-assets/stylesheets/optional';
+@import "settings";
 
+@import 'stylesheets/lib';
+@import 'stylesheets/common';
+@import 'stylesheets/optional';
+
+@import 'lib/variables';
+@import 'lib/links';
+@import 'lib/typography';
+
+@import 'layout/common/all';
+@import 'layout/page_specific/all';

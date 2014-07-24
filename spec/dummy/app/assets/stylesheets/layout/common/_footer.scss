@@ -1,0 +1,23 @@
+.l-footer {
+  .social-links {
+    float: right;
+  }
+
+  .icon--logo {
+    margin-top: $baseline-unit*2;
+  }
+
+  .footer-site-links__login {
+    @include respond-to($mq-m) {
+      display: none;
+    }
+
+    > form {
+      @include inline-block;
+    }
+  }
+
+  .authentication__link {
+    @extend %link-nav-secondary;
+  }
+}

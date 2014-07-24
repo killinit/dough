@@ -1,0 +1,101 @@
+.styleguide-nav-container {
+  border-bottom: 1px solid $color-nav-border;
+}
+
+.styleguide-nav {
+  @include body(14, 18);
+  font-weight: 500;
+  z-index: 9;
+  background-color: $color-nav-background;
+  width: 100%;
+  list-style-type: none;
+  margin: 0;
+  padding: 0;
+}
+
+.styleguide-nav__item {
+  width: 100%;
+  margin-bottom: 0;
+
+  @include respond-to($mq-s) {
+    @include inline-block;
+    width: auto;
+    border-bottom: none;
+  }
+
+  a {
+    @include body(14, 18);
+    @include inline-block;
+    text-decoration: none;
+    padding: $baseline-unit*3;
+    width: 100%;
+    color: $color-nav-text;
+  }
+
+  &:first-child a {
+    padding-left: 0;
+  }
+
+  a:visited {
+    color: $color-nav-text;
+  }
+
+  a:hover {
+    border: none;
+    text-decoration: none;
+    color: $color-green-secondary;
+  }
+
+  a:focus {
+    outline: 1px solid;
+    border-bottom: none;
+  }
+}
+
+.styleguide-nav__submenu {
+  list-style-type: none;
+  margin: 0;
+  padding: 0;
+  position: relative;
+  z-index: 1;
+  background-color: $color-nav-background;
+
+  @include respond-to($mq-m) {
+    position: absolute;
+  }
+}
+
+.styleguide-nav__toggle {
+  cursor: pointer;
+  width: 100%;
+  padding: 6px;
+  border: none;
+  border-bottom: 1px solid $color-nav-border;
+  color: $color-nav-text;
+  background-color: $color-nav-background;
+  text-align: left;
+  line-height: 2;
+
+  @include respond-to($mq-m) {
+    display: none;
+  }
+}
+
+.has-sub-menu {
+  white-space: nowrap;
+
+  & > a:first-child {
+    font-weight: 600;
+  }
+}
+
+.js .styleguide-nav {
+  display: none;
+  @include respond-to($mq-m) {
+    display: block;
+  }
+}
+
+.js .styleguide-nav__submenu {
+  display: none;
+}
