@@ -1,0 +1,63 @@
+<nav class="styleguide-nav-container">
+  <div class="l-styleguide-container">
+    <ul class="styleguide-nav">
+      <li class="styleguide-nav__item"><%= link_to 'Overview', root_path %></li>
+
+      <li class="styleguide-nav__item"><%= link_to 'HTML', root_path %></li>
+
+      <li class="styleguide-nav__item"><%= link_to 'CSS', root_path %></li>
+
+      <li class="styleguide-nav__item"><%= link_to 'Typography', root_path %></li>
+
+      <li class="styleguide-nav__item"><%= link_to 'Forms', root_path %></li>
+
+      <li class="styleguide-nav__item has-sub-menu">
+        <%= link_to 'Components' do %>
+          Components
+        <% end %>
+
+        <ul class="styleguide-nav__submenu">
+          <li><%= link_to 'Common Components', root_path %></li>
+          <li><%= link_to 'Website Components', root_path %></li>
+        </ul>
+      </li>
+
+      <li class="styleguide-nav__item"><%= link_to 'Layouts', root_path %></li>
+
+      <li class="styleguide-nav__item has-sub-menu">
+        <%= link_to root_path do %>
+          Demos
+        <% end %>
+
+        <ul class="styleguide-nav__submenu">
+          <li><%= link_to 'Base Styles', root_path %></li>
+          <li><%= link_to 'CMS Content', root_path %></li>
+        </ul>
+      </li>
+
+      <li class="styleguide-nav__item has-sub-menu">
+        <%= link_to root_path do %>
+          Pages
+        <% end %>
+
+        <ul class="styleguide-nav__submenu">
+          <li><%= link_to 'Home page', root_path %></li>
+          <li><%= link_to 'Article / guide', root_path %></li>
+          <li><%= link_to 'News index page', root_path %></li>
+          <li><%= link_to 'News article', root_path %></li>
+          <li><%= link_to 'Action plan', root_path %></li>
+          <li><%= link_to 'Search results', root_path %></li>
+          <li><%= link_to 'Contact page', root_path %></li>
+          <li><%= link_to 'Parent category page', root_path %></li>
+          <li><%= link_to 'Child category page', root_path %></li>
+          <li><%= link_to 'Error page', root_path %></li>
+          <li><%= link_to 'Feedback - content', root_path %></li>
+          <li><%= link_to 'Feedback - technical', root_path %></li>
+          <li><%= link_to 'Feedback - money adivce', root_path %></li>
+        </ul>
+      </li>
+
+      <li class="styleguide-nav__item"><%= link_to 'JS', root_path %></li>
+    </ul>
+  </div>
+</nav>
