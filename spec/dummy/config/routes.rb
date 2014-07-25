@@ -1,7 +1,12 @@
 Dummy::Application.routes.draw do
   root to: "home#index"
 
-  resources :components, only: [:index]
+  resources :components, only: [] do
+    collection do
+      get 'common'
+    end
+  end
+
   resources :forms, only: [:index]
   resources :typography, only: [:index]
   resources :html, only: [:index]

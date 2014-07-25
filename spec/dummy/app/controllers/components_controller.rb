@@ -1,4 +1,4 @@
 class ComponentsController < ApplicationController
-  def index
+  def common
   end
 end
