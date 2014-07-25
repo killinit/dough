@@ -12,6 +12,13 @@ module ApplicationHelper
     format_tokens_as_html(tokens, line_numbers)
   end
 
+  def erb(line_numbers: false, &block)
+    source = strip_leading_indentation_from_source(capture(&block))
+    tokens = Rouge::Lexers::ERB.lex(source)
+
+    format_tokens_as_html(tokens, line_numbers)
+  end
+
   def strip_leading_indentation_from_source(source)
     source.strip.gsub(/^[  ]{2}/, '')
   end
