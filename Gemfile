@@ -5,6 +5,8 @@ gemspec
 
 group :development, :test do
   gem 'mas-development_dependencies'
+  gem 'kss'
+  gem 'rouge'
 end
 
 group :build do
