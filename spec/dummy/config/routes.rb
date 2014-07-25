@@ -18,6 +18,7 @@ Dummy::Application.routes.draw do
   resources :html, only: [:index]
   resources :css, only: [:index]
   resources :javascript, only: [:index]
+  resources :layouts, only: [:index]
 
   get "/integrated_dough_helper", to: "integrated_dough_helper#index"
 end
