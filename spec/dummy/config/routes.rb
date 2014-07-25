@@ -7,6 +7,12 @@ Dummy::Application.routes.draw do
     end
   end
 
+  resources :demos, only: [] do
+    collection do
+      get 'basic'
+    end
+  end
+
   resources :forms, only: [:index]
   resources :typography, only: [:index]
   resources :html, only: [:index]
