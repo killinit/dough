@@ -150,4 +150,92 @@
     background-position: 0px -209px;
   }
 
+  .icon--tool {
+    background-position: -32px -215px;
+  }
+
+  .icon--calc {
+    background-position: -90px -215px;
+  }
+
+  .icon--debt {
+    background-position: -76px -265px;
+
+    @include respond-to($mq-l) {
+      background-position: -5px -244px;
+    }
+  }
+
+  .icon--budgeting {
+    background-position: -192px -263px;
+
+    @include respond-to($mq-l) {
+      background-position: -121px -244px;
+    }
+  }
+
+  .icon--saving {
+    background-position: -308px -265px;
+
+    @include respond-to($mq-l) {
+      background-position: -237px -244px;
+    }
+  }
+
+  .icon--work {
+    background-position: -424px -265px;
+
+    @include respond-to($mq-l) {
+      background-position: -353px -244px;
+    }
+  }
+
+  .icon--benefits {
+    background-position: -76px -340px;
+
+    @include respond-to($mq-l) {
+      background-position: -5px -319px;
+    }
+  }
+
+  .icon--births {
+    background-position: -193px -340px;
+
+    @include respond-to($mq-l) {
+      background-position: -122px -319px;
+    }
+  }
+
+  .icon--insurance {
+    background-position: -309px -340px;
+
+    @include respond-to($mq-l) {
+      background-position: -238px -319px;
+    }
+  }
+
+  .icon--homes {
+    background-position: -425px -340px;
+
+    @include respond-to($mq-l) {
+      background-position: -354px -319px;
+    }
+  }
+
+  .icon--care {
+    background-position: -77px -413px;
+
+    @include respond-to($mq-l) {
+      background-position: -6px -392px;
+    }
+  }
+
+  .icon--cars {
+    background-position: -193px -413px;
+
+    @include respond-to($mq-l) {
+      background-position: -122px -392px;
+    }
+  }
+
 } // end media query

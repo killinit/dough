@@ -45,6 +45,21 @@
   }
 }
 
+%icon-width-tool-promo {
+  width: 30px;
+  height: 30px;
+}
+
+%icon-width-directory {
+  width: 35px;
+  height: 35px;
+
+  @include respond-to($mq-l) {
+    width: 64px;
+    height: 72px;
+  }
+}
+
 %icon {
   // prevent IE8 from breaking when extending .icon into a :before it doesn't understand
   background-image: image_url('dough/assets/images/icon-sprite.png');
@@ -268,4 +283,108 @@
   background-position: -922px -50px;
   width: 60px;
   height: 70px;
+}
+
+// Tool promo icons
+
+.icon--tool {
+  @extend %icon-width-tool-promo;
+  background-position: -136px -444px;
+}
+
+.icon--calc {
+  @extend %icon-width-tool-promo;
+  background-position: -254px -444px;
+}
+
+// Directory icons on the homepage
+
+.icon--debt {
+  @extend %icon-width-directory;
+  background-position: -77px -266px;
+
+  @include respond-to($mq-l) {
+    background-position: -158px -527px;
+  }
+}
+
+.icon--budgeting {
+  @extend %icon-width-directory;
+  background-position: -194px -264px;
+
+  @include respond-to($mq-l) {
+    background-position: -390px -527px;
+  }
+}
+
+.icon--saving {
+  @extend %icon-width-directory;
+  background-position: -309px -266px;
+
+  @include respond-to($mq-l) {
+    background-position: -622px -527px;
+  }
+}
+
+.icon--work {
+  @extend %icon-width-directory;
+  background-position: -426px -266px;
+
+  @include respond-to($mq-l) {
+    background-position: -854px -527px;
+  }
+}
+
+.icon--benefits {
+  @extend %icon-width-directory;
+  background-position: -78px -340px;
+
+  @include respond-to($mq-l) {
+    background-position: -158px -677px;
+  }
+}
+
+.icon--births {
+  @extend %icon-width-directory;
+  background-position: -195px -340px;
+
+  @include respond-to($mq-l) {
+    background-position: -392px -677px;
+  }
+}
+
+.icon--insurance {
+  @extend %icon-width-directory;
+  background-position: -311px -340px;
+
+  @include respond-to($mq-l) {
+    background-position: -624px -677px;
+  }
+}
+
+.icon--homes {
+  @extend %icon-width-directory;
+  background-position: -311px -340px;
+
+  @include respond-to($mq-l) {
+    background-position: -856px -677px;
+  }
+}
+
+.icon--care {
+  @extend %icon-width-directory;
+  background-position: -79px -413px;
+
+  @include respond-to($mq-l) {
+    background-position: -160px -824px;
+  }
+}
+
+.icon--cars {
+  @extend %icon-width-directory;
+  background-position: -195px -413px;
+
+  @include respond-to($mq-l) {
+    background-position: -392px -824px;
+  }
 }
