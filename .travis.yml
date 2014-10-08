@@ -6,4 +6,6 @@ rvm:
   - 2.1.1
 notifications:
   email: false
-install: bundle exec bower update
+install:
+  - bundle install
+  - bundle exec bower update
