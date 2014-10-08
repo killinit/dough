@@ -8,5 +8,6 @@ notifications:
   email: false
 install:
   - bundle install
+  - npm install bower
   - npm install
   - bundle exec bower update
