@@ -1,5 +1,5 @@
 <div class="callout-editorial">
   <%= text %>
-  <%= html_content[:heading] %>
-  <%= html_content[:content] %>
+  <%= html_content[:heading].html_safe %>
+  <%= html_content[:content].html_safe %>
 </div>
