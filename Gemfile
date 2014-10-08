@@ -6,6 +6,7 @@ gemspec
 group :development, :test do
   gem 'mas-development_dependencies', git: 'https://github.com/moneyadviceservice/mas-development_dependencies.git'
   gem 'pry'
+  gem 'rspec-rails'
 end
 
 gem 'mas-build' if ENV['MAS_BUILD']
