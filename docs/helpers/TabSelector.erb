@@ -1,11 +1,13 @@
 <%=
   tab_for :section_name do |tab|
     tab.section do |container|
+      container.active
       container.content do
         "Really complex content </br> #{ callout_instructional "some stuff", html_content: {heading: 'foo', content: 'bar'} }"
       end
     end
     tab.section do |container|
+      container.inactive
       container.content do
         callout_instructional "some stuff", html_content: {heading: 'foo', content: 'bar'} 
       end
