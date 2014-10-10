@@ -7,7 +7,8 @@ require "active_support/core_ext"
 module Dough
   module Helpers
     def tab_selector id, &block
-      Dough::Helpers::TabSelector.new id, &block
+      tabs_structure = Dough::Helpers::TabSelector.selector id, &block
+      self.render partial: 'dough/helpers/tab_selector/tab_selector', locals: { tab_section: tabs_structure }
     end
       
     def method_missing(method_name, *args, &block)

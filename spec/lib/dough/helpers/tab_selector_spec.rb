@@ -20,16 +20,13 @@ module Dough
             element_id: 'section-id',
             tabs: [
               {
+                active: false,
                 heading: 'Some title',
                 content: 'Really complex content</br>'
               }
             ]
           } 
         }
-
-        it "returns the section name" do
-          expect(subject).to include('section-name')
-        end
 
         it "builds a tabs structure" do
           expect(subject).to eql(expected)
@@ -59,10 +56,12 @@ module Dough
             element_id: 'section-id',
             tabs: [
               {
+                active: false,
                 heading: 'Some title',
                 content: 'Really complex content</br>'
               },
               {
+                active: false,
                 heading: 'Another tab',
                 content: 'Some basic content'
               }

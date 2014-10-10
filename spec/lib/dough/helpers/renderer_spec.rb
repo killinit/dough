@@ -106,6 +106,54 @@ module Dough
           expect(response.body).to include('<div class="callout callout--instructional">')
         end
       end
+
+      describe "#tab_selector" do
+        let(:tab_selector) {
+        }
+
+        controller do
+          helper Dough::Helpers
+
+          def index
+            render(inline: 
+              "<%=
+                tab_selector :section_name do |tab|
+                  tab.section do |container|
+                    container.active
+                    container.heading 'Some title'
+                    container.content do
+                      'Really complex content </br>' 
+                    end
+                  end
+                end
+              %>"
+            )
+          end
+        end
+
+        it "has a tab selector" do
+          get :index
+
+          expect(response.body).to include('div class="tab-selector"')
+        end
+
+        it "creates tab wrappers" do
+          get :index
+
+          expect(response.body).to include('div data-dough-tab-selector-triggers-outer class="tab-selector__triggers-outer"')
+          expect(response.body).to include('div data-dough-tab-selector-triggers-inner class="tab-selector__triggers-inner"')
+        end
+
+        it "sets up the expected amount of tabs" do
+          get :index
+
+          expect(response.body).to include('div class="tab-selector__trigger-container is-active"')
+        end
+
+        it "creates the expected sections"
+        it "indexes each section appropriately"
+        it "indexes each tab appropriately"
+      end
     end
   end
 end
