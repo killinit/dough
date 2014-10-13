@@ -37,12 +37,16 @@ module Dough
       end
 
       describe "#callout_instructional" do
-
         controller do
           helper Dough::Helpers
 
           def index
-            render(inline: "<%= callout_instructional 'Budgeting tips' %>")
+            render(inline: "<%= callout_instructional html_content: {
+    heading: '<h3>Budgeting tips</h3>',
+    content: '<p>In 1985, average first-time buyers needed a deposit of 5% to buy a home - in 2012, this had increased to 20%
+    <br/><strong>Source: HM Treasury </strong>
+      </p>'
+} %>")
           end
         end
 
