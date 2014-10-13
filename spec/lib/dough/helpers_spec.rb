@@ -25,10 +25,9 @@ module Dough
         let(:render) { double(:render, render: '', empty?: false) }
 
         it "delegates to the correct helper" do
-          expect(subject.inset_block).to receive(:render).and_return render
-          subject.inset_block('foo').render
+          expect(subject.inset_block(html_content: { heading: 'foo', content: 'bar' })).to receive(:render).and_return render
+          subject.inset_block(html_content: { heading: 'foo', content: 'bar' }).render
         end
-
       end
 
       context "helper not found" do
