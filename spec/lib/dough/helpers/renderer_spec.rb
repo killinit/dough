@@ -115,14 +115,14 @@ module Dough
           helper Dough::Helpers
 
           def index
-            render(inline: 
+            render(inline:
               "<%=
                 tab_selector :section_name do |tab|
                   tab.section do |container|
                     container.active
                     container.heading 'Some title'
                     container.content do
-                      'Really complex content </br>' 
+                      'Really complex content </br>'
                     end
                   end
                 end
@@ -134,7 +134,7 @@ module Dough
         it "has a tab selector" do
           get :index
 
-          expect(response.body).to include('div class="tab-selector"')
+          expect(response.body).to include('div class="tab-selector')
         end
 
         it "creates tab wrappers" do
