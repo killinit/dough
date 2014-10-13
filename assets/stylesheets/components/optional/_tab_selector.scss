@@ -84,7 +84,7 @@
 //
 // Styleguide Tab selector collapsable
 .tab-selector--collapsable {
-  @include respond-to(0, $mq-m) {
+  &.is-collapsed {
 
     .tab-selector__triggers-inner {
       .js & {
