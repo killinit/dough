@@ -20,7 +20,9 @@
 }
 
 .tab-selector__trigger-container {
-  .js & {
+  visibility: hidden;
+  [data-dough-tabselector-initialised="yes"] & {
+    visibility: visible;
     display: inline-block;
     &.is-active {
       display: inline-block;
@@ -161,6 +163,7 @@
   .tab-selector__icon {
     @extend .icon--down-chevron-blue;
   }
+
   .tab-selector__triggers-inner.is-active .tab-selector__icon {
     @extend .icon--up-chevron-blue;
   }
@@ -177,6 +180,7 @@
       }
     }
   }
+
   .tab-selector__trigger.is-active .tab-selector__item-info {
     @extend .visually-hidden;
   }
