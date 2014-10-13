@@ -42,7 +42,7 @@ module Dough
           helper Dough::Helpers
 
           def index
-            render(inline: "<%= callout_editorial 'hello', html_content: {heading: 'Some heading', content: 'Some content' } %>")
+            render(inline: "<%= callout_editorial html_content: {heading: 'Some heading', content: 'Some content' } %>")
           end
         end
 
@@ -50,7 +50,7 @@ module Dough
         it 'renders "text"' do
           get :index
 
-          expect(response.body).to include('hello')
+          expect(response.body).to include('Some heading')
         end
 
         it "wraps the text in a div element" do
@@ -86,7 +86,7 @@ module Dough
           helper Dough::Helpers
 
           def index
-            render(inline: "<%= callout_instructional 'Some instructional text', html_content: {
+            render(inline: "<%= callout_instructional html_content: {
     heading: '<h3>Budgeting tips</h3>',
     content: '<p>In 1985, average first-time buyers needed a deposit of 5% to buy a home - in 2012, this had increased to 20%
     <br/><strong>Source: HM Treasury </strong>
