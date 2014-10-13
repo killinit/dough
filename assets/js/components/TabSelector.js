@@ -58,12 +58,10 @@ define(['jquery', 'DoughBaseComponent', 'eventsWithPromises', 'mediaQueries'],
           this._updateTriggers(triggerId);
         }
 
-        // set height after triggers updated, so active trigger is visible on small viewport
-        this._setTriggerWrapperHeight();
-
         if (this.config.collapseInSmallViewport === true) {
           this._updateCollapsedState();
         }
+
         this._subscribeHubEvents();
       };
 
@@ -145,6 +143,8 @@ define(['jquery', 'DoughBaseComponent', 'eventsWithPromises', 'mediaQueries'],
               .removeClass(this.selectors.activeClass)
               .addClass(this.selectors.inactiveClass);
           this.$el.addClass(this.selectors.collapsedClass);
+          // set height after triggers updated, so active trigger is visible on small viewport
+          this._setTriggerWrapperHeight();
         }
       };
 
