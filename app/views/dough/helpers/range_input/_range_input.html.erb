@@ -1,0 +1,16 @@
+<p><label id="lbl-<%= html_content[:name_input] %>"><%= html_content[:lbl_input] %></label></p>
+<div class="range-input" data-dough-component="RangeInput" data-dough-range-input-config='{<%= '"prefixUnit": "' + html_content[:unit_input] + '"' if defined? html_content[:unit_input] %>}'>
+  <div class="range-input__text-outer">
+    <span class="range-input__container range-input__text-inner">
+      <span class="form__input-container">
+        <span class="form__input-label"><%= html_content[:unit_input] %></span>
+        <input class="form__input" data-dough-range-input aria-describedby="lbl-<%= html_content[:name_input] %>" name="<%= html_content[:name_input] %>" type="text" pattern="\d*" min="<%= html_content[:min_value_input] %>" max="<%= html_content[:max_value_input] %>" value="<%= html_content[:value_input] %>" <%= 'maxlength=' + html_content[:max_length] if defined? html_content[:max_length] %>">
+        <span class="form__input-outline"></span>
+      </span>
+    </span>
+    <span class="range-input__container range-input__text-suffix">
+      <span class="calc-result__suffix"><%= html_content[:suffix_input] %></span>
+    </span>
+  </div>
+  <div class="form__group-item range-input__container-slider" data-dough-range-input-slider></div>
+</div>

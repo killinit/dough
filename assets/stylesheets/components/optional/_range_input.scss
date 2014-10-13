@@ -13,7 +13,7 @@
   background-size: 100% 10px;
 }
 
-.form__input-range {
+.range-input__slider {
   /* iPhone / mobile webkit */
   @media screen and (max-device-width: $mq-m) {
     /** have to set bg colour here instead of on track shadow DOM, for Android browser */
@@ -21,39 +21,36 @@
   }
   -webkit-appearance: none;
   margin-bottom: $baseline-unit * 2;
+  margin-top: $baseline-unit * 2;
   width: 100%;
   padding-left:1px;
   padding-right:1px;
-  margin-top: $baseline-unit * 4;
-  @include respond-to($mq-m) {
-    margin-top: $baseline-unit;
-  }
 }
 
-.form__input-range::-webkit-slider-runnable-track {
+.range-input__slider::-webkit-slider-runnable-track {
   @include range-track-colors;
   @include respond-to($mq-m) {
     height: 7px;
   }
 }
 
-.form__input-range::-moz-range-track {
+.range-input__slider::-moz-range-track {
   @include range-track-colors;
   height: 7px;
 }
 
-.form__input-range::-ms-track {
+.range-input__slider::-ms-track {
   @include range-track-colors;
   color: transparent;
   height: 20px;
 }
 
-.form__input-range::-ms-fill-lower,
-.form__input-range::-ms-fill-upper {
+.range-input__slider::-ms-fill-lower,
+.range-input__slider::-ms-fill-upper {
   background: transparent;
 }
 
-.form__input-range::-ms-tooltip {
+.range-input__slider::-ms-tooltip {
   .js & {
     display: none;
   }
@@ -79,7 +76,7 @@
   }
 }
 
-.form__input-range::-webkit-slider-thumb {
+.range-input__slider::-webkit-slider-thumb {
   -webkit-appearance: none;
   @include range-thumb-generic;
   @include range-thumb-large;
@@ -88,20 +85,14 @@
   }
 }
 
-.form__input-range::-moz-range-thumb {
+.range-input__slider::-moz-range-thumb {
   @include range-thumb-generic;
   @include range-thumb-large;
 }
 
-.form__input-range::-ms-thumb {
+.range-input__slider::-ms-thumb {
   @include range-thumb-generic;
   height: 20px;
-}
-
-.l-form__range {
-  @include respond-to($mq-m) {
-    width: 50%;
-  }
 }
 
 %input--range {
@@ -128,4 +119,56 @@
 .form__range-output-r {
   @extend %input--range;
   text-align: left;
+}
+
+.range-input {
+  font-size: 0;
+}
+
+.range-input__container {
+  display: inline-block;
+  vertical-align: middle;
+}
+
+.range-input__text-outer {
+  @include respond-to($mq-m) {
+    display: inline-block;
+    vertical-align: middle;
+    padding-right: 10px;
+    width: 30%;
+  }
+}
+
+.range-input__text-inner {
+  @extend %base-font-style;
+  width: 50%;
+}
+
+.range-input__text-suffix {
+  @extend %base-font-style;
+  padding-left: 5px;
+  width: 50%;
+}
+
+.range-input__container-slider {
+  @extend %base-font-style;
+  margin-bottom: 1em;
+  position: relative;
+  @include respond-to($mq-m) {
+    display: inline-block;
+    vertical-align: middle;
+    width: 69%;
+  }
+}
+
+.range-input__min {
+  position: absolute;
+  bottom: -1em;
+  left: 0;
+}
+
+.range-input__max {
+  position: absolute;
+  bottom: -1em;
+  right: 0;
 }
