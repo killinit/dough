@@ -21,9 +21,11 @@
 
 .tab-selector__trigger-container {
   visibility: hidden;
+  .js & {
+    display: inline-block;
+  }
   [data-dough-tabselector-initialised="yes"] & {
     visibility: visible;
-    display: inline-block;
     &.is-active {
       display: inline-block;
     }
