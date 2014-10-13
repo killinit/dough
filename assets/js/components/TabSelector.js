@@ -26,7 +26,8 @@ define(['jquery', 'DoughBaseComponent', 'eventsWithPromises', 'mediaQueries'],
             trigger: 'data-dough-tab-selector-trigger',
             target: 'data-dough-tab-selector-target',
             activeClass: 'is-active',
-            inactiveClass: 'is-inactive'
+            inactiveClass: 'is-inactive',
+            collapsedClass: 'is-collapsed'
           },
           uiEvents = {
             'click [data-dough-tab-selector-trigger]': '_handleClickEvent'
@@ -89,6 +90,7 @@ define(['jquery', 'DoughBaseComponent', 'eventsWithPromises', 'mediaQueries'],
       TabSelector.prototype._checkComponentMarkup = function() {
         this.$triggersWrapperOuter = this.$el.find(selectors.triggersOuter);
         this.$triggersWrapperInner = this.$el.find(selectors.triggersInner).addClass(this.selectors.inactiveClass);
+        this.$triggerContainers = this.$el.find('[' + selectors.triggerContainer + ']');
         this.$firstTrigger = this.$triggersWrapperInner.find('[' + selectors.trigger + ']').first();
 
         this.isComponentMarkupValid = !!(this.$triggersWrapperOuter.length &&
@@ -126,15 +128,39 @@ define(['jquery', 'DoughBaseComponent', 'eventsWithPromises', 'mediaQueries'],
         var _this = this;
 
         if (this.config.collapseInSmallViewport === true) {
-          eventsWithPromises.subscribe('mediaquery:resize', function(data) {
-            if ($.inArray(data.newSize, ['mq-xs', 'mq-s']) !== -1) {
+          eventsWithPromises.subscribe('mediaquery:resize', function() {
+            _this.$el.removeClass(_this.selectors.collapsedClass);
+            if (_this._haveTriggersWrapped()) {
               _this.$triggersWrapperInner
                   .removeClass(_this.selectors.activeClass)
                   .addClass(_this.selectors.inactiveClass);
+              _this.$el.addClass(_this.selectors.collapsedClass);
             }
           });
         }
 
+      };
+
+      /**
+       * Have the triggers (eg tabs) wrapped onto a second line?
+       * @returns {boolean}
+       * @private
+       */
+      TabSelector.prototype._haveTriggersWrapped = function() {
+        var result = false,
+            top;
+
+        this.$triggerContainers.each(function(idx) {
+          if (idx === 0) {
+            top = $(this).position().top;
+          } else {
+            if ($(this).position().top > (top + $(this).height())) {
+              result = true;
+            }
+          }
+        });
+        console.log('wrapped: ' + result);
+        return result;
       };
 
       /**
@@ -165,7 +191,7 @@ define(['jquery', 'DoughBaseComponent', 'eventsWithPromises', 'mediaQueries'],
         var $trigger = $(e.currentTarget),
             targetAttr;
 
-        this._deSelectItem(this.$el.find('[' + selectors.triggerContainer + '].is-active'));
+        this._deSelectItem(this.$triggerContainers.filter('.is-active'));
         targetAttr = $trigger.attr(selectors.trigger);
         this._updateTriggers(targetAttr);
         this._positionMenu($trigger);
