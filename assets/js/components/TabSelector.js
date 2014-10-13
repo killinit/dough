@@ -61,6 +61,9 @@ define(['jquery', 'DoughBaseComponent', 'eventsWithPromises', 'mediaQueries'],
         // set height after triggers updated, so active trigger is visible on small viewport
         this._setTriggerWrapperHeight();
 
+        if (this.config.collapseInSmallViewport === true) {
+          this._updateCollapsedState();
+        }
         this._subscribeHubEvents();
       };
 
@@ -125,20 +128,24 @@ define(['jquery', 'DoughBaseComponent', 'eventsWithPromises', 'mediaQueries'],
        * @private
        */
       TabSelector.prototype._subscribeHubEvents = function() {
-        var _this = this;
-
         if (this.config.collapseInSmallViewport === true) {
-          eventsWithPromises.subscribe('mediaquery:resize', function() {
-            _this.$el.removeClass(_this.selectors.collapsedClass);
-            if (_this._haveTriggersWrapped()) {
-              _this.$triggersWrapperInner
-                  .removeClass(_this.selectors.activeClass)
-                  .addClass(_this.selectors.inactiveClass);
-              _this.$el.addClass(_this.selectors.collapsedClass);
-            }
-          });
+          eventsWithPromises.subscribe('mediaquery:resize', $.proxy(this._updateCollapsedState, this));
         }
+      };
 
+      /**
+       * Check if the tabs should be collapsed or not
+       * (based on whether they're currently wrapped) and update them accordingly
+       * @private
+       */
+      TabSelector.prototype._updateCollapsedState = function() {
+        this.$el.removeClass(this.selectors.collapsedClass);
+        if (this._haveTriggersWrapped()) {
+          this.$triggersWrapperInner
+              .removeClass(this.selectors.activeClass)
+              .addClass(this.selectors.inactiveClass);
+          this.$el.addClass(this.selectors.collapsedClass);
+        }
       };
 
       /**
