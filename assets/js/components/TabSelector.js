@@ -159,7 +159,6 @@ define(['jquery', 'DoughBaseComponent', 'eventsWithPromises', 'mediaQueries'],
             }
           }
         });
-        console.log('wrapped: ' + result);
         return result;
       };
 
