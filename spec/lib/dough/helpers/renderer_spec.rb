@@ -22,6 +22,10 @@ module Dough
           get :index
         end
 
+        it "renders text" do
+          expect(response.body).to include('Some instructional text')
+        end
+
         it "has an inset_block class" do
           expect(response.body).to include('class="inset-block"')
         end
@@ -54,7 +58,7 @@ module Dough
           get :index
         end
 
-        it 'renders "text"' do
+        it 'renders html content' do
           expect(response.body).to include('Budgeting tips')
         end
 
