@@ -17,6 +17,39 @@ module Dough
         end
       end
 
+      describe "#render" do
+        context "helper template found" do
+          controller do
+            helper Dough::Helpers
+
+            def index
+              render(inline: "<%= inset_block 'Some instructional text' %>")
+            end
+          end
+          it "renders the template" do
+            get :index
+
+            expect(response.body).to include('Some instructional text')
+          end
+        end
+
+        context "helper template not found" do
+          controller do
+            helper Dough::Helpers
+
+            def index
+              render(inline: "<%= foo 'Some instructional text' %>")
+            end
+          end
+
+          it "throws an exception" do
+            expect {
+              get :index
+            }.to raise_error ActionView::Template::Error
+          end
+        end
+      end
+
       describe "#inset_block" do
         before :each do
           get :index
@@ -37,7 +70,6 @@ module Dough
         it "has an inset_block text class" do
           expect(response.body).to include('class="inset-block__text"')
         end
-
       end
 
       describe "#callout_instructional" do
