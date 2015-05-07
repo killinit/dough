@@ -329,6 +329,91 @@
 
 
 
+    <section>
+        <article class="readme"><h1 id="dough">Dough</h1>
+<p>A reusable UI component library from the Money Advice Service, free for use on any Rails based project. More info and a fuller introduction available <a target="_blank" href="http://making.moneyadviceservice.org.uk/2015/01/making-with-dough/">on our blog</a>.</p>
+<p><a target="_blank" href="https://codeclimate.com/github/moneyadviceservice/dough"><img src="https://codeclimate.com/github/moneyadviceservice/dough/badges/gpa.svg" alt="Code Climate"></a></p>
+<h2 id="prerequisites">Prerequisites</h2>
+<ul>
+<li><a target="_blank" href="http://git-scm.com">Git</a></li>
+<li><a target="_blank" href="http://bower.io">Bower</a></li>
+<li><a target="_blank" href="http://nodejs.org/">NodeJS</a></li>
+<li><a target="_blank" href="https://github.com/gulpjs/gulp/blob/master/docs/getting-started.md">Gulp</a></li>
+</ul>
+<h2 id="installation">Installation</h2>
+<p>Clone the repository:</p>
+<pre><code class="lang-sh">$ git clone https://github.com/moneyadviceservice/dough.git
+</code></pre>
+<p>Make sure all dependencies are available:</p>
+<pre><code class="lang-sh">$ npm install -g bower
+$ bower install
+$ npm install
+</code></pre>
+<h2 id="how-to-use-a-local-copy-of-dough">How to use a local copy of Dough</h2>
+<p><strong>Dough is a bower module embedded inside a ruby gem.</strong></p>
+<p>Use these instructions when you&#39;re working on Dough and want to
+see the effects within another project. For example, if you&#39;re working on <em>Pension Calculator</em>,
+you want to use a local copy of Dough.</p>
+<p>For the purpose of this example, <em>PROJECT</em> refers to <em>Pension Calculator</em>, or whatever you&#39;re working on.</p>
+<h4 id="make-sure-you-have-the-latest-bundle-in-_project_">Make sure you have the latest bundle in <em>PROJECT</em></h4>
+<pre><code class="lang-sh">cd PROJECT
+bundle install
+</code></pre>
+<h4 id="link-dough-ruby-to-your-local-copy-in-_project_-s-gemfile-">Link <code>dough-ruby</code> to your local copy, in <em>PROJECT</em>&#39;s <code>Gemfile</code></h4>
+<p><strong><em>DO NOT COMMIT THIS!!!</em></strong></p>
+<pre><code class="lang-sh"># Add this to the top of the file if it doesn&#39;t exist already
+gem &#39;dough-ruby&#39;, path: &#39;~/Sites/dough&#39; # or whatever your local Dough is
+</code></pre>
+<h4 id="set-up-bower-link-in-dough">Set up <code>bower link</code> in Dough</h4>
+<pre><code class="lang-sh">cd ~/Sites/dough # or whatever your local Dough is
+bower link
+</code></pre>
+<h4 id="connect-the-link-above-to-_project_">Connect the link above to <em>PROJECT</em></h4>
+<pre><code class="lang-sh">cd PROJECT
+bower link dough
+</code></pre>
+<h4 id="troubleshooting">Troubleshooting</h4>
+<p>If you don&#39;t see your local CSS after following the steps</p>
+<pre><code class="lang-sh">rm -r tmp/cache
+</code></pre>
+<h2 id="running-javascript-tests">Running Javascript tests</h2>
+<p>Make sure you ran npm install.</p>
+<pre><code class="lang-sh">$ ./node_modules/karma/bin/karma start spec/js/karma.conf.js --single-run
+</code></pre>
+<h2 id="javascript-style-checking">Javascript style checking</h2>
+<p>Make sure you ran npm install.</p>
+<pre><code>./node_modules/jshint/bin/jshint ./assets/js --config .jshintrc
+</code></pre><pre><code>./node_modules/jscs/bin/jscs js
+</code></pre><p>To prevent commiting JavaScript files that violate JSHint and JSCS rules:</p>
+<pre><code class="lang-shell">cat &gt; .git/hooks/pre-commit &lt;&lt;EOF
+!/bin/sh
+./script/git-pre-commit-jshint.sh
+EOF
+chmod +x .git/hooks/pre-commit
+</code></pre>
+<h2 id="javascript-documentation">JavaScript documentation</h2>
+<p>Dough&#39;s <a target="_blank" href="http://moneyadviceservice.github.io/dough">JS documentation</a> follows the <a target="_blank" href="https://github.com/jsdoc3/jsdoc">jsDoc</a> syntax and is generated using Gulp.</p>
+<p>To generate documentation</p>
+<pre><code class="lang-shell">gulp jsdoc
+</code></pre>
+<p>To generate and deploy documentation to the <a target="_blank" href="https://github.com/moneyadviceservice/dough/tree/gh-pages">gh-pages</a> branch.</p>
+<pre><code class="lang-shell">gulp build
+</code></pre>
+<p>The <em>jsDoc</em> theme used is <a target="_blank" href="https://github.com/davidshimjs/jaguarjs-jsdoc">jaguar-jsdoc</a>.</p>
+<h2 id="contributing">Contributing</h2>
+<ol>
+<li>Fork it</li>
+<li>Create your feature branch (<code>git checkout -b my-new-feature</code>)</li>
+<li>Keep your feature branch focused and short lived</li>
+<li>Commit your changes (<code>git commit -am &#39;Add some feature&#39;</code>)</li>
+<li>Push to the branch (<code>git push origin my-new-feature</code>)</li>
+<li>Create new Pull Request</li>
+</ol>
+<h2 id="releases">Releases</h2>
+<p>31/7/14 - v1.0.0 - breaking change - VisibilityToggler component renamed to Collapsable</p>
+</article>
+    </section>
+
 
 
 
@@ -337,7 +422,7 @@
         
 
         <footer>
-            Documentation generated by <a target="_blank" href="https://github.com/jsdoc3/jsdoc">JSDoc 3.3.0-alpha5</a> on Thu May 07 2015 10:18:46 GMT+0100 (BST)
+            Documentation generated by <a target="_blank" href="https://github.com/jsdoc3/jsdoc">JSDoc 3.3.0-alpha5</a> on Thu May 07 2015 10:50:08 GMT+0100 (BST)
         </footer>
     </div>
 </div>
